@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jszx.mapper.RecodrFromMapper">
+
+    <resultMap id="BaseResultMap" type="com.jszx.pojo.RecodrFrom">
+            <id property="rid" column="rId" jdbcType="BIGINT"/>
+            <result property="user" column="user" jdbcType="INTEGER"/>
+            <result property="inTime" column="in_time" jdbcType="TIMESTAMP"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="outTime" column="out_time" jdbcType="TIMESTAMP"/>
+            <result property="carryKey" column="carry_key" jdbcType="VARCHAR"/>
+            <result property="version" column="version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        rId,user,in_time,
+        type,out_time,carry_key,
+        version
+    </sql>
+</mapper>
