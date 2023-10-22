@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 20/10/2023 18:26:41
+ Date: 22/10/2023 19:43:40
 */
 
 SET NAMES utf8mb4;
@@ -30,11 +30,12 @@ CREATE TABLE `t_admin`  (
   PRIMARY KEY (`aid`) USING BTREE,
   INDEX `department`(`department`) USING BTREE,
   CONSTRAINT `t_admin_ibfk_1` FOREIGN KEY (`department`) REFERENCES `t_department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
+INSERT INTO `t_admin` VALUES (1, '20210001', '123456', '开发', 1);
 
 -- ----------------------------
 -- Table structure for t_department
@@ -46,11 +47,12 @@ CREATE TABLE `t_department`  (
   `dleader` bigint(20) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_category_name`(`dname`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_department
 -- ----------------------------
+INSERT INTO `t_department` VALUES (1, '技术中心开发部', 1);
 
 -- ----------------------------
 -- Table structure for t_recodr_from
@@ -72,6 +74,7 @@ CREATE TABLE `t_recodr_from`  (
 -- ----------------------------
 -- Records of t_recodr_from
 -- ----------------------------
+INSERT INTO `t_recodr_from` VALUES (1, 1, '2023-10-22 15:09:34', '值班', '2023-10-01 17:09:51', '否', 1);
 
 -- ----------------------------
 -- Table structure for t_user
@@ -94,10 +97,11 @@ CREATE TABLE `t_user`  (
   UNIQUE INDEX `username`(`username`) USING BTREE,
   INDEX `department`(`department`) USING BTREE,
   CONSTRAINT `t_user_ibfk_1` FOREIGN KEY (`department`) REFERENCES `t_department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
+INSERT INTO `t_user` VALUES (1, 'll', '20213460', '123456', '15934715895', 1, '大三', '20213460', '计科2101', 1, '男', 'll');
 
 SET FOREIGN_KEY_CHECKS = 1;
