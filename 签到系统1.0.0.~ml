@@ -3645,9 +3645,9 @@
 <XPD:OBJ name="OwnedElements[2]" type="UMLPackage" guid="O6o3nGuYWE2BIa+a3BsfswAA">
 <XPD:ATTR name="Name" type="string">数据库设计</XPD:ATTR>
 <XPD:REF name="Namespace">c4JywnILGE2lnEgjptuRsgAA</XPD:REF>
-<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
+<XPD:ATTR name="#OwnedDiagrams" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLClassDiagram" guid="smZTUqhc+kanOKn7fdWRmAAA">
-<XPD:ATTR name="Name" type="string">ClassDiagram1</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">类图</XPD:ATTR>
 <XPD:REF name="DiagramOwner">O6o3nGuYWE2BIa+a3BsfswAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="iFf+5cXUkEy4KiRmA0rNtwAA">
 <XPD:REF name="Diagram">smZTUqhc+kanOKn7fdWRmAAA</XPD:REF>
@@ -4030,7 +4030,39 @@
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#OwnedElements" type="integer">8</XPD:ATTR>
+<XPD:OBJ name="OwnedDiagrams[1]" type="UMLClassDiagram" guid="vGCw7f/GTEqjIPmJXid9rgAA">
+<XPD:ATTR name="Name" type="string">对象图</XPD:ATTR>
+<XPD:REF name="DiagramOwner">O6o3nGuYWE2BIa+a3BsfswAA</XPD:REF>
+<XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="BXquVSd/t0GImZo2M6tTmwAA">
+<XPD:REF name="Diagram">vGCw7f/GTEqjIPmJXid9rgAA</XPD:REF>
+<XPD:ATTR name="#OwnedViews" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedViews[0]" type="UMLColObjectView" guid="oKMOsPGeT0mjLSJKxTw2dwAA">
+<XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
+<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">296</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">164</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">114</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">176</XPD:ATTR>
+<XPD:REF name="Model">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+<XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="kyg+9wjIu0WLierS4JMWZgAA">
+<XPD:OBJ name="NameLabel" type="LabelView" guid="LnsEVA32yUiR8JIJva8SUgAA">
+<XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : 用户</XPD:ATTR>
+</XPD:OBJ>
+<XPD:OBJ name="StereotypeLabel" type="LabelView" guid="sD3ryXilyUOcraAaUG1kxwAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+</XPD:OBJ>
+<XPD:OBJ name="PropertyLabel" type="LabelView" guid="v/wMrF8x7UC1dGTj8v7GdQAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="SlotCompartment" type="UMLSlotCompartmentView" guid="ZOfbSySy90Cj5OM/k1xCZwAA">
+<XPD:REF name="Model">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:ATTR name="#OwnedElements" type="integer">10</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="AK9PxZY+50W7U/C4RyaGDAAA">
 <XPD:ATTR name="Name" type="string">用户</XPD:ATTR>
 <XPD:REF name="Namespace">O6o3nGuYWE2BIa+a3BsfswAA</XPD:REF>
@@ -4048,28 +4080,40 @@
 <XPD:ATTR name="Name" type="string">id</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#AttributeLinks" type="integer">1</XPD:ATTR>
+<XPD:REF name="AttributeLinks[0]">OO3dV/YGC0e/BKX09TbnHgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[1]" type="UMLAttribute" guid="15vvmJAbNEuqLAy81oIu/AAA">
 <XPD:ATTR name="Name" type="string">昵称</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#AttributeLinks" type="integer">1</XPD:ATTR>
+<XPD:REF name="AttributeLinks[0]">PE3MeRjMK0C1/nKdR6NQEgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[2]" type="UMLAttribute" guid="Y59sfHk6ZEiNf6nzFSNVjgAA">
 <XPD:ATTR name="Name" type="string">账号</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#AttributeLinks" type="integer">1</XPD:ATTR>
+<XPD:REF name="AttributeLinks[0]">2qPf7iuyuE6fi+NcZikEyAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[3]" type="UMLAttribute" guid="oD+CpjjbZ0mjRMaGzMj0fgAA">
 <XPD:ATTR name="Name" type="string">密码</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#AttributeLinks" type="integer">1</XPD:ATTR>
+<XPD:REF name="AttributeLinks[0]">flXztB3mhkW5VZ3TpqvsrgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[4]" type="UMLAttribute" guid="e9FQUaYJO0aaaI9FcMCmgAAA">
 <XPD:ATTR name="Name" type="string">电话</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#AttributeLinks" type="integer">1</XPD:ATTR>
+<XPD:REF name="AttributeLinks[0]">O5yhZxWynEGN2zMFqnEl6wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[5]" type="UMLAttribute" guid="i6SPmybIMkihxl7GmrtPRQAA">
 <XPD:ATTR name="Name" type="string">部门</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#AttributeLinks" type="integer">1</XPD:ATTR>
+<XPD:REF name="AttributeLinks[0]">6v2SaKz1vUqTVRGaQ1yGVgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[6]" type="UMLAttribute" guid="W8Y2YAENs0u15s7NDWPqxgAA">
 <XPD:ATTR name="Name" type="string">年级</XPD:ATTR>
@@ -4095,6 +4139,8 @@
 <XPD:ATTR name="Name" type="string">头像图片路径</XPD:ATTR>
 <XPD:REF name="Owner">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
 </XPD:OBJ>
+<XPD:ATTR name="#Instances" type="integer">1</XPD:ATTR>
+<XPD:REF name="Instances[0]">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[1]" type="UMLClass" guid="Xz1ZrddbbEiZ+kA6W5BrsQAA">
 <XPD:ATTR name="Name" type="string">管理员</XPD:ATTR>
@@ -4294,6 +4340,77 @@
 <XPD:REF name="Views[2]">xeSXKkNAf0W3/RM2aLDwhwAA</XPD:REF>
 <XPD:REF name="Views[3]">PLMZVhHMw0Wstt56VZpUfAAA</XPD:REF>
 </XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[8]" type="UMLObject" guid="0Cz+s32pvEKd59mIRRpslgAA">
+<XPD:REF name="Namespace">O6o3nGuYWE2BIa+a3BsfswAA</XPD:REF>
+<XPD:REF name="Classifier">AK9PxZY+50W7U/C4RyaGDAAA</XPD:REF>
+<XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
+<XPD:REF name="Views[0]">oKMOsPGeT0mjLSJKxTw2dwAA</XPD:REF>
+<XPD:REF name="Views[1]">ZOfbSySy90Cj5OM/k1xCZwAA</XPD:REF>
+<XPD:ATTR name="#Slots" type="integer">11</XPD:ATTR>
+<XPD:OBJ name="Slots[0]" type="UMLAttributeLink" guid="OO3dV/YGC0e/BKX09TbnHgAA">
+<XPD:ATTR name="Name" type="string">id</XPD:ATTR>
+<XPD:ATTR name="ValueExpression" type="string">20213460</XPD:ATTR>
+<XPD:REF name="Attribute">uAyXngCqZ0i7a4Q3b1nhnQAA</XPD:REF>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[1]" type="UMLAttributeLink" guid="PE3MeRjMK0C1/nKdR6NQEgAA">
+<XPD:ATTR name="Name" type="string">昵称</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
+<XPD:ATTR name="ValueExpression" type="string">刘林</XPD:ATTR>
+<XPD:REF name="Attribute">15vvmJAbNEuqLAy81oIu/AAA</XPD:REF>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[2]" type="UMLAttributeLink" guid="2qPf7iuyuE6fi+NcZikEyAAA">
+<XPD:ATTR name="Name" type="string">账号</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
+<XPD:ATTR name="ValueExpression" type="string">20213460</XPD:ATTR>
+<XPD:REF name="Attribute">Y59sfHk6ZEiNf6nzFSNVjgAA</XPD:REF>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[3]" type="UMLAttributeLink" guid="flXztB3mhkW5VZ3TpqvsrgAA">
+<XPD:ATTR name="Name" type="string">密码</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
+<XPD:ATTR name="ValueExpression" type="string">123456</XPD:ATTR>
+<XPD:REF name="Attribute">oD+CpjjbZ0mjRMaGzMj0fgAA</XPD:REF>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[4]" type="UMLAttributeLink" guid="O5yhZxWynEGN2zMFqnEl6wAA">
+<XPD:ATTR name="Name" type="string">电话</XPD:ATTR>
+<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
+<XPD:ATTR name="ValueExpression" type="string">15934715895</XPD:ATTR>
+<XPD:REF name="Attribute">e9FQUaYJO0aaaI9FcMCmgAAA</XPD:REF>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[5]" type="UMLAttributeLink" guid="6v2SaKz1vUqTVRGaQ1yGVgAA">
+<XPD:ATTR name="Name" type="string">部门</XPD:ATTR>
+<XPD:REF name="Attribute">i6SPmybIMkihxl7GmrtPRQAA</XPD:REF>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[6]" type="UMLAttributeLink" guid="kIuOWy6TZky2DA0juT/TcwAA">
+<XPD:ATTR name="Name" type="string">AttributeLink5</XPD:ATTR>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[7]" type="UMLAttributeLink" guid="2OPQMie2mkGJzwra42rnWwAA">
+<XPD:ATTR name="Name" type="string">AttributeLink6</XPD:ATTR>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[8]" type="UMLAttributeLink" guid="IZm9jHUpUEGrYP0ogFwe3QAA">
+<XPD:ATTR name="Name" type="string">AttributeLink7</XPD:ATTR>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[9]" type="UMLAttributeLink" guid="KPB/xvfZyUqBzsy4/OcbrwAA">
+<XPD:ATTR name="Name" type="string">AttributeLink8</XPD:ATTR>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Slots[10]" type="UMLAttributeLink" guid="ew35QWeq4kayUymT+CXEAgAA">
+<XPD:ATTR name="Name" type="string">AttributeLink9</XPD:ATTR>
+<XPD:REF name="Instance">0Cz+s32pvEKd59mIRRpslgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[9]" type="UMLClass" guid="VOv6a1f6qECTzCvnNcxmLwAA">
+<XPD:ATTR name="Name" type="string">用户</XPD:ATTR>
+<XPD:REF name="Namespace">O6o3nGuYWE2BIa+a3BsfswAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
