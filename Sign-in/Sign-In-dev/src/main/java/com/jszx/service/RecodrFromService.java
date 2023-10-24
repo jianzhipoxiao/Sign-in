@@ -2,6 +2,9 @@ package com.jszx.service;
 
 import com.jszx.pojo.RecodrFrom;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jszx.pojo.vo.SignIn;
+import com.jszx.pojo.vo.SignOut;
+import com.jszx.utils.Result;
 
 /**
 * @author lenovo
@@ -10,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface RecodrFromService extends IService<RecodrFrom> {
 
+    //签入
+    Result signIn(SignIn signIn);
+
+    //签出
+    Result signOut(SignOut signOut);
 }

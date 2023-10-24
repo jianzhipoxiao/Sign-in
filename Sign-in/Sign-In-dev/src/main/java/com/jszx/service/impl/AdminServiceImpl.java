@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jszx.pojo.Admin;
 import com.jszx.service.AdminService;
 import com.jszx.mapper.AdminMapper;
+import com.jszx.utils.Result;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,25 @@ import org.springframework.stereotype.Service;
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
     implements AdminService{
 
+    @Override
+    public Result adminLogin(Admin admin) {
+        return null;
+    }
+
+    @Override
+    public Result queryAllUser() {
+        return null;
+    }
+
+    @Override
+    public Result updateAdminMsg(Admin admin) {
+        return null;
+    }
+
+    @Override
+    public Result queryRecodrFrom() {
+        return null;
+    }
 }
 
 

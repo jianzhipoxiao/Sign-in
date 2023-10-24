@@ -2,6 +2,7 @@ package com.jszx.service;
 
 import com.jszx.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jszx.utils.Result;
 
 /**
 * @author lenovo
@@ -9,5 +10,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-10-22 23:23:55
 */
 public interface UserService extends IService<User> {
+    //用户登陆
+    Result login(User user);
+
+    //用户注册
+    Result register(User user);
+
+    //查询用户信息
+    Result queryUsers();
 
 }

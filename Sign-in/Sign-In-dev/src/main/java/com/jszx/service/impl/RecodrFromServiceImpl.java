@@ -2,8 +2,11 @@ package com.jszx.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jszx.pojo.RecodrFrom;
+import com.jszx.pojo.vo.SignIn;
+import com.jszx.pojo.vo.SignOut;
 import com.jszx.service.RecodrFromService;
 import com.jszx.mapper.RecodrFromMapper;
+import com.jszx.utils.Result;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +18,15 @@ import org.springframework.stereotype.Service;
 public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrFrom>
     implements RecodrFromService{
 
+    @Override
+    public Result signIn(SignIn signIn) {
+        return null;
+    }
+
+    @Override
+    public Result signOut(SignOut signOut) {
+        return null;
+    }
 }
 
 

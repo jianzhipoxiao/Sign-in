@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jszx.pojo.User;
 import com.jszx.service.UserService;
 import com.jszx.mapper.UserMapper;
+import com.jszx.utils.Result;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,20 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService{
 
+    @Override
+    public Result login(User user) {
+        return null;
+    }
+
+    @Override
+    public Result register(User user) {
+        return null;
+    }
+
+    @Override
+    public Result queryUsers() {
+        return null;
+    }
 }
 
 
