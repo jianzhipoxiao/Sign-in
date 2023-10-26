@@ -7,12 +7,18 @@ package com.jszx.utils;
 public enum ResultCodeEnum {
 
     SUCCESS(200,"success"),
+    SIGN_IN_ERROE(410,"sign_in_error"),
+    SIGN_OUT_ERROR(411,"SING_OUT_ERROR"),
     USERNAME_ERROR(501,"usernameError"),
     USERNAME_ERROR_NO_USER(502,"no user"),
-    USERNAME_ERROR_USER_IS_EMPTY(503,"user is empty"),
     PASSWORD_ERROR(503,"passwordError"),
     NOTLOGIN(504,"notLogin"),
-    USERNAME_USED(505,"userNameUsed");
+    USERNAME_USED(505,"userNameUsed"),
+    USERNAME_ERROR_USER_IS_EMPTY(506,"user is empty"),
+    REGISTER_FAILED(507,"register failed"),
+    UPDATE_ERROR(508,"update error");
+
+
 
     private Integer code;
     private String message;

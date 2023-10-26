@@ -25,4 +25,7 @@
         grade,sno,major,
         status,sex,image
     </sql>
+    <select id="selectByUsername" resultType="com.jszx.pojo.User">
+        select * from clockin_dev.t_user where username = {$username}
+    </select>
 </mapper>

@@ -8,5 +8,5 @@ import java.util.Map;
 @Data
 public class room {
     private Map<String, User> onlineUser;
-    private Map<String,User> getKey;
+    private Map<String, User> getKey;
 }

@@ -1,23 +1,23 @@
 package com.jszx.pojo.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-
-/**
- * @deprecated 用于接收用户签到信息
- */
 
 @Data
 public class SignOut {
     //用户
     private Integer user;
     //签出时间
-    private Date InTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date outTime;
     //地点
     private String place;
     //类型
-    private Integer type;
+    private String type;
     //携带钥匙
-    private Integer key;
+    private String key;
 }

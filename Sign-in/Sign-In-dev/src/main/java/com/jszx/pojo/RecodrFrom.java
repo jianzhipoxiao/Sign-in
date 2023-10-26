@@ -11,9 +11,10 @@ import lombok.Data;
  */
 @TableName(value ="t_recodr_from")
 @Data
-public class RecodrFrom implements Serializable {
+public class
+RecodrFrom implements Serializable {
     @TableId
-    private Long rid;
+    private String rid;
 
     private Integer user;
 
@@ -26,6 +27,8 @@ public class RecodrFrom implements Serializable {
     private String carryKey;
     @Version
     private Integer version;
+    //签到记录 0 未签出
+    private Integer state =0;
 
     private static final long serialVersionUID = 1L;
 }

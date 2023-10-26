@@ -1,8 +1,8 @@
 package com.jszx.service;
 
-import com.jszx.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jszx.pojo.vo.LoginUser;
+import com.jszx.pojo.User;
+import com.jszx.pojo.vo.TestUser;
 import com.jszx.utils.Result;
 
 /**
@@ -12,11 +12,13 @@ import com.jszx.utils.Result;
 */
 public interface UserService extends IService<User> {
     //用户登陆
-    Result login(LoginUser user);
+    Result login(TestUser user);
 
     //用户注册
-    Result register(LoginUser user);
+    Result register(User user);
     //查询用户信息
-    Result queryUsersById(Integer id);
+    Result queryUsersBySno(Integer sno);
 
+    //用户更新信息
+    Result updateUser(User user);
 }
