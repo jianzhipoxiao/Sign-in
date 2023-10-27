@@ -25,6 +25,7 @@ RecodrFrom implements Serializable {
     private Date outTime;
 
     private String carryKey;
+    private String transmitKey;
     @Version
     private Integer version;
     //签到记录 0 未签出

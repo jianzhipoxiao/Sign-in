@@ -34,4 +34,11 @@ public class SignController {
         Result result = recodrFromService.queryRoomOnlieUsers();
         return result;
     }
+
+    @GetMapping("/getCarryKeyUser")
+    public Result queryCarryKeyUser(){
+        Result result = recodrFromService.queryCarryKeyUser();
+        return result;
+    }
+
 }

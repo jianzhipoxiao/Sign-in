@@ -6,6 +6,7 @@ import com.jszx.pojo.User;
 import com.jszx.pojo.vo.TestUser;
 import com.jszx.service.UserService;
 import com.jszx.mapper.UserMapper;
+import com.jszx.utils.MD5Util;
 import com.jszx.utils.Result;
 import com.jszx.utils.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +32,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return Result.build(null,ResultCodeEnum.USERNAME_ERROR_NO_USER);
         }
 
-        if (!loginUser.getPassword().equals(user.getUsername())){
+        if (!loginUser.getPassword().equals(user.getPassword())){
             return Result.build(null,ResultCodeEnum.PASSWORD_ERROR);
         }
-        return Result.ok(user);
+        return Result.ok(loginUser);
     }
 
     @Override
     public Result register(User user) {
+        user.setPassword(MD5Util.encrypt(user.getPassword()));
         int rows = userMapper.insert(user);
         if (rows<1){
             return Result.build(null,ResultCodeEnum.REGISTER_FAILED);
         }
+        user.setPassword("");
         return Result.ok(user);
     }
 

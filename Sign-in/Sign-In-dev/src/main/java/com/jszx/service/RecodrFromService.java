@@ -21,4 +21,7 @@ public interface RecodrFromService extends IService<RecodrFrom> {
 
     //查询工作室在线人数
     Result queryRoomOnlieUsers();
+
+    //查询携带工作室钥匙成员
+    Result queryCarryKeyUser();
 }
