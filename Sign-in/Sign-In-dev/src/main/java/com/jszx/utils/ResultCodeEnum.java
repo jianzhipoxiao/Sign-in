@@ -16,7 +16,8 @@ public enum ResultCodeEnum {
     USERNAME_USED(505,"userNameUsed"),
     USERNAME_ERROR_USER_IS_EMPTY(506,"user is empty"),
     REGISTER_FAILED(507,"register failed"),
-    UPDATE_ERROR(508,"update error");
+    UPDATE_ERROR(508,"update error"),
+    DEPARTMENT_ERROR_NO_DEPARTMENT(509,"no department");
 
 
 

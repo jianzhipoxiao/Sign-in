@@ -40,7 +40,7 @@ springdoc:
   api-docs:
     path: /v3/api-docs
   group-configs:
-    - group: 'default'
+    - group: '技术中心签到系统'
       paths-to-match: '/**'
       packages-to-scan: com.jszx.controller
 

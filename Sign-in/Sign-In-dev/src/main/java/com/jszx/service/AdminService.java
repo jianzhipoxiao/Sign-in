@@ -14,11 +14,12 @@ public interface AdminService extends IService<Admin> {
     Result adminLogin(Admin admin);
 
     //查看所有用户信息
-    Result queryAllUser();
+    Result queryAllUser(Integer department);
 
     //修改管理员信息
     Result updateAdminMsg(Admin admin);
 
     //查看用户签到记录
     Result queryRecodrFrom();
+
 }

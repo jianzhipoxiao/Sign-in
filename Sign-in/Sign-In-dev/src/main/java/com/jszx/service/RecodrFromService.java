@@ -18,4 +18,7 @@ public interface RecodrFromService extends IService<RecodrFrom> {
 
     //签出
     Result signOut(SignOut signOut);
+
+    //查询工作室在线人数
+    Result queryRoomOnlieUsers();
 }

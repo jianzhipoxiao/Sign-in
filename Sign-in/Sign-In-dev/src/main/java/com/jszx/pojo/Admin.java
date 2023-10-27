@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -16,8 +18,9 @@ public class Admin implements Serializable {
     @TableId
     private Integer aid;
 
+    @NotNull
     private String username;
-
+    @NotNull
     private String password;
 
     private String nickname;

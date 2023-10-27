@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
  * @author 刘林
  * @version 1.0
  */
-//TODO 细分签出类型
 @RestController
 @RequestMapping("Sign")
 public class SignController {
@@ -26,6 +25,13 @@ public class SignController {
     @PutMapping("signOut")
     private Result SignOut(@RequestBody SignOut signOut){
         Result result = recodrFromService.signOut(signOut);
+        return result;
+    }
+
+
+    @GetMapping("/getRomeOnlineUsers")
+    public Result queryRomeOnlienUsers(){
+        Result result = recodrFromService.queryRoomOnlieUsers();
         return result;
     }
 }

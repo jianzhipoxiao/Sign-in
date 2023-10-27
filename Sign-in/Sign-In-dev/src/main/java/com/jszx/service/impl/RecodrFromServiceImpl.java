@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,7 +35,7 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
             RecodrFrom recodrFrom = new RecodrFrom();
             recodrFrom.setRid(UUID.randomUUID().toString());
             recodrFrom.setUser(signIn.getUser());
-            recodrFrom.setInTime(signIn.getInTime());
+            recodrFrom.setInTime(new Date());
             recodrFrom.setType(signIn.getType());
             recodrFrom.setCarryKey(signIn.getKey());
             int rows = recodrFromMapper.insert(recodrFrom);
@@ -70,6 +70,19 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
             return Result.ok("签出成功");
         }
         return Result.build("签出位置不符合",ResultCodeEnum.SIGN_OUT_ERROR);
+    }
+
+    @Override
+    public Result queryRoomOnlieUsers() {
+        LambdaQueryWrapper<RecodrFrom> recodrFromLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getState,0);
+
+        List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(recodrFromLambdaQueryWrapper);
+        if (recodrFroms==null){
+            return Result.ok("工作室目前没人哦~")
+        }
+
+        return null;
     }
 }
 
