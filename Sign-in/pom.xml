@@ -79,7 +79,7 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-            <version>4.3.0</version>
+            <version>4.0.0</version>
         </dependency>
 
 
@@ -108,6 +108,12 @@
             <version>2.5</version>
         </dependency>
 
+        <!--swagger 注解依赖 -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.6.11</version>
+        </dependency>
     </dependencies>
 
 
