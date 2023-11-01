@@ -14,7 +14,7 @@ spring:
     druid:
       url: jdbc:mysql:///clockin_dev
       username: root
-      password: liulove02
+      password: lwx
       driver-class-name: com.mysql.cj.jdbc.Driver
 # mybatis-plus的配置
 mybatis-plus:

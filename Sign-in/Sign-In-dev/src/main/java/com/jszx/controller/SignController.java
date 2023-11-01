@@ -17,6 +17,7 @@ import io.swagger.annotations.Api;
 @Slf4j
 @Api(tags="签到接口")
 @RestController
+@CrossOrigin
 @RequestMapping("Sign")
 public class SignController {
     @Autowired

@@ -15,4 +15,9 @@ public class testController {
         System.out.println("testUser = " + testUser);
         return "ok";
     }
+
+    @GetMapping("ok")
+    public String ok (){
+        return "ok";
+    }
 }

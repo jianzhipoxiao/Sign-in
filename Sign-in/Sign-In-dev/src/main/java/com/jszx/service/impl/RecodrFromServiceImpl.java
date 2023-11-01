@@ -105,9 +105,9 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
             roomOnlineUser.setName(user.getName());
             roomOnlineUser.setImage(user.getImage());
             roomOnlineUser.setPhone(user.getPhone());
-            if (onlineUsers.contains(roomOnlineUser)) {
-                continue;
-            }
+//            if (onlineUsers.contains(roomOnlineUser)) {
+//                continue;
+//            }
             onlineUsers.add(roomOnlineUser);
         }
         return Result.ok(onlineUsers);

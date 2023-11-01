@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Sign-in/Sign-In-dev/Sign-In-dev.iml" filepath="$PROJECT_DIR$/Sign-in/Sign-In-dev/Sign-In-dev.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Sign-in/Sign-in.iml" filepath="$PROJECT_DIR$/Sign-in/Sign-in.iml" />
     </modules>
   </component>
 </project>

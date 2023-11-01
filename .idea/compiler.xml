@@ -9,10 +9,6 @@
         <module name="Sign-In-dev" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Sign-in" target="17" />
-      <module name="Sign-In-dev" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

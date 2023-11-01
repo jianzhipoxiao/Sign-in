@@ -7,7 +7,6 @@ import com.jszx.pojo.vo.TestUser;
 import com.jszx.service.UserService;
 import com.jszx.utils.Result;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "2.0.3版本-20200312")
 @ApiSupport(author = "Ll15934715895@126.com",order = 284)
 @RestController
+@CrossOrigin
 @RequestMapping("user")
 public class UserController {
     @Autowired
