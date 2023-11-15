@@ -24,15 +24,15 @@ public class SignController {
     private RecodrFromService recodrFromService;
     @ApiOperation("用户签到")
     @PostMapping("sginIn")
-    private Result SignIn(@RequestBody SignIn signIn){
-        Result result = recodrFromService.signIn(signIn);
+    private Result SignIn(@RequestBody SignIn signIn,@RequestHeader String token){
+        Result result = recodrFromService.signIn(signIn,token);
         return  result;
     }
 
     @ApiOperation("用户签出")
-    @PutMapping("signOut")
-    private Result SignOut(@RequestBody SignOut signOut){
-        Result result = recodrFromService.signOut(signOut);
+    @PostMapping("signOut")
+    private Result SignOut(@RequestBody SignOut signOut,@RequestHeader String token){
+        Result result = recodrFromService.signOut(signOut,token);
         return result;
     }
 
@@ -40,7 +40,7 @@ public class SignController {
     @ApiOperation("用户查看工作室是否有人")
     @GetMapping("/getRomeOnlineUsers")
     public Result queryRomeOnlienUsers(){
-        Result result = recodrFromService.queryRoomOnlieUsers();
+        Result result = recodrFromService.queryRoomOnlineUsers();
         return result;
     }
 
@@ -48,6 +48,13 @@ public class SignController {
     @GetMapping("/getCarryKeyUser")
     public Result queryCarryKeyUser(){
         Result result = recodrFromService.queryCarryKeyUser();
+        return result;
+    }
+
+    @ApiOperation("用户转交钥匙")
+    @PutMapping()
+    public Result transmitKey(@RequestHeader String token, @RequestParam String userName){
+        Result result = recodrFromService.updateByUserName(token,userName);
         return result;
     }
 

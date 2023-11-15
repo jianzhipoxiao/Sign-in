@@ -3,6 +3,7 @@ package com.jszx.pojo.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,9 +22,11 @@ public class SignIn {
     private Date inTime;
     //地点
     @ApiModelProperty("签到地点")
+    @NotNull
     private String place;
     //类型
     @ApiModelProperty("签到类型")
+    @NotNull
     private String type;
     //携带钥匙
     @ApiModelProperty("是否携带钥匙")

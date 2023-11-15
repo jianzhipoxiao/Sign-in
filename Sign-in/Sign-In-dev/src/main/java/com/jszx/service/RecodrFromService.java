@@ -14,14 +14,17 @@ import com.jszx.utils.Result;
 public interface RecodrFromService extends IService<RecodrFrom> {
 
     //签入
-    Result signIn(SignIn signIn);
+    Result signIn(SignIn signIn,String tokne);
 
     //签出
-    Result signOut(SignOut signOut);
+    Result signOut(SignOut signOut,String token);
 
     //查询工作室在线人数
-    Result queryRoomOnlieUsers();
+    Result queryRoomOnlineUsers();
 
     //查询携带工作室钥匙成员
     Result queryCarryKeyUser();
+
+    //更新签到表中用户携带钥匙
+    Result updateByUserName(String token, String userName);
 }

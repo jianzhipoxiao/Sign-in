@@ -2,19 +2,21 @@ package com.jszx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.jszx.pojo.RecodrFrom;
+import com.jszx.config.DepartmentMsg;
+import com.jszx.mapper.DepartmentMapper;
+import com.jszx.pojo.Department;
 import com.jszx.pojo.User;
+import com.jszx.pojo.vo.CarryKeyUsersList;
 import com.jszx.pojo.vo.TestUser;
+import com.jszx.utils.ShowMessage;
 import com.jszx.service.RecodrFromService;
 import com.jszx.service.UserService;
 import com.jszx.mapper.UserMapper;
-import com.jszx.utils.MD5Util;
-import com.jszx.utils.Result;
-import com.jszx.utils.ResultCodeEnum;
+import com.jszx.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * @author lenovo
@@ -25,15 +27,21 @@ import java.util.HashMap;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         implements UserService {
 
+    @Autowired
+    private JwtHelper jwtHelper;
 
     @Autowired
     private RecodrFromService recodrFromService;
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private DepartmentMapper departmentMapper;
+
     /**
      * 1验证账号密码
-     * 2成功来到首页
+     * 2 返回用户携带的token
+     * 3成功来到首页
      * @param user
      * @return
      */
@@ -46,12 +54,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return Result.build(null, ResultCodeEnum.USERNAME_ERROR_NO_USER);
         }
 
-        if (!loginUser.getPassword().equals(user.getPassword())) {
+        if (!loginUser.getPassword().equals(MD5Util.encrypt(user.getPassword()))) {
             return Result.build(null, ResultCodeEnum.PASSWORD_ERROR);
         }
 
+        long uid = loginUser.getId().longValue();
+        String token = jwtHelper.createToken(uid);
         //获取在线的用户
-        return Result.ok(loginUser);
+        return Result.ok(token);
     }
 
     @Override
@@ -81,26 +91,74 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public Result queryUsersBySno(Integer sno) {
+    public Result queryUsersByToken(String token) {
+
+        int userId = jwtHelper.getUserId(token).intValue();
         //id不存在默认查1号用户
-        if (sno == null) {
-            sno = 1;
-        }
-        User user = userMapper.selectById(sno);
+
+        User user = userMapper.selectById(userId);
         if (user == null) {
             return Result.build(null, ResultCodeEnum.USERNAME_ERROR_NO_USER);
         }
-
-        return Result.ok(user);
+        LambdaQueryWrapper<Department> departmentLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        departmentLambdaQueryWrapper.eq(Department::getId,user.getDepartment());
+        Department department = departmentMapper.selectOne(departmentLambdaQueryWrapper);
+        HashMap<String, String> userMessages = ShowMessage.getShowUser(user, department);
+        return Result.ok(userMessages);
     }
 
     @Override
-    public Result updateUser(User user) {
+    public Result updateUser(String token,User user) {
+        int userId = jwtHelper.getUserId(token).intValue();
+        user.setId(userId);
         int row = userMapper.updateById(user);
         if (row < 1) {
             return Result.build(null, ResultCodeEnum.UPDATE_ERROR);
         }
-        return Result.ok(user);
+        User newUser = userMapper.selectById(userId);
+        if (newUser.getDepartment()==null){
+            newUser.setDepartment(1);
+        }
+        LambdaQueryWrapper<Department> departmentLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        departmentLambdaQueryWrapper.eq(Department::getId,newUser.getDepartment());
+        Department department = departmentMapper.selectOne(departmentLambdaQueryWrapper);
+        HashMap<String, String> userMessages = ShowMessage.getShowUser(newUser, department);
+        return Result.ok(userMessages);
+    }
+
+    @Override
+    public Result queryUsersAll() {
+        LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        userLambdaQueryWrapper.eq(User::getGrade,"大一")
+                        .or().eq(User::getGrade,"大二");
+        List<User> userList = userMapper.selectList(userLambdaQueryWrapper);
+        if (userList==null){
+            return Result.build("查询失败",ResultCodeEnum.SELECT_ERROR);
+        }
+        List<String> userListNames = new ArrayList<>();
+        Iterator<User> iterator = userList.iterator();
+        CarryKeyUsersList kaifa = new CarryKeyUsersList(DepartmentMsg.kaifa);
+        CarryKeyUsersList sheji = new CarryKeyUsersList(DepartmentMsg.sheji);
+        CarryKeyUsersList sheying = new CarryKeyUsersList(DepartmentMsg.sheying);
+
+        //遍历查询到的所有用户，按部门分类
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+            Department department = departmentMapper.selectById(user.getDepartment());
+            String dname = department.getDname();
+            if (dname.equals(DepartmentMsg.kaifa)){
+                kaifa.addUser(user);
+            } else if (dname.equals(DepartmentMsg.sheji)){
+                sheji.addUser(user);
+            } else if (dname.equals(DepartmentMsg.sheying)){
+                sheying.addUser(user);
+            }
+        }
+        List<CarryKeyUsersList> carryKeyUsersLists = new ArrayList<>();
+        carryKeyUsersLists.add(kaifa);
+        carryKeyUsersLists.add(sheji);
+        carryKeyUsersLists.add(sheying);
+        return Result.ok(carryKeyUsersLists);
     }
 }
 

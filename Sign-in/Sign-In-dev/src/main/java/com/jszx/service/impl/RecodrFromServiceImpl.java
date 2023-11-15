@@ -2,22 +2,22 @@ package com.jszx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jszx.mapper.CarryKeyMapper;
 import com.jszx.mapper.UserMapper;
+import com.jszx.pojo.CarryKey;
 import com.jszx.pojo.RecodrFrom;
 import com.jszx.pojo.User;
-import com.jszx.utils.Room;
+import com.jszx.pojo.vo.SignUser;
+import com.jszx.utils.*;
 import com.jszx.pojo.vo.SignIn;
 import com.jszx.pojo.vo.SignOut;
 import com.jszx.service.RecodrFromService;
 import com.jszx.mapper.RecodrFromMapper;
-import com.jszx.utils.Result;
-import com.jszx.utils.ResultCodeEnum;
-import com.jszx.utils.Sign;
-import com.jszx.utils.SignMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -35,58 +35,128 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
     @Autowired
     private RecodrFromMapper recodrFromMapper;
 
-    public Result signIn(SignIn signIn) {
-        if (signIn.getPlace().equals(Sign.SIGIN_PLACE.getPlace())) {
+    @Autowired
+    private CarryKeyMapper carryKeyMapper;
+    @Autowired
+    private JwtHelper jwtHelper;
+
+    /**
+     * 用户签到
+     * 1 token-> 用户信息
+     * 签到位置经度纬度来判读是否成功
+     *
+     * @param signIn
+     * @return
+     */
+    public Result signIn(SignIn signIn, String token) {
+        //解析token
+        int userId = jwtHelper.getUserId(token).intValue();
+        signIn.setUser(userId);
+
+        //state==1为签出，签到失败
+        LambdaQueryWrapper<RecodrFrom> recodrFromLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getUser,userId)
+                .eq(RecodrFrom::getState,1); //state==1 未签出
+        List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(recodrFromLambdaQueryWrapper);
+        if (!recodrFroms.isEmpty()){
+            return Result.build("签到失败，不能重复签到",ResultCodeEnum.SIGN_IN_ERROE);
+        }
+        //检查经度纬度
+        if (signIn.getPlace() == null) {
+            signIn.setPlace("117.5555,128.888");
+        }
+
+        //将经度维度从字符串转为BigDecimal
+        String[] split = signIn.getPlace().split(",");
+        BigDecimal bLongitude = new BigDecimal(split[0]);
+        BigDecimal bLatitude = new BigDecimal(split[1]);
+        System.out.println("bLatitude = " + bLatitude);
+        System.out.println("bLongitude = " + bLongitude);
+
+        if (SignMessage.checkPlace(bLongitude, bLatitude)) {
             RecodrFrom recodrFrom = new RecodrFrom();
             recodrFrom.setRid(UUID.randomUUID().toString());
             recodrFrom.setUser(signIn.getUser());
             recodrFrom.setInTime(new Date());
             recodrFrom.setType(signIn.getType());
             recodrFrom.setCarryKey(signIn.getKey());
+            recodrFrom.setState(1);
             int rows = recodrFromMapper.insert(recodrFrom);
             if (rows < 1) {
                 return Result.build(null, ResultCodeEnum.SIGN_IN_ERROE);
             }
             return Result.ok("签到成功");
         }
-        return Result.build(null, ResultCodeEnum.SIGN_IN_ERROE);
+        return Result.build("签到位置不符合", ResultCodeEnum.SIGN_IN_ERROE);
     }
 
+    /**
+     * 用户签出
+     * 1 验证 token -> user
+     * 2 验证签到地点
+     *
+     * @param signOut
+     * @param token
+     * @return
+     */
     @Transactional
-    public Result signOut(SignOut signOut) {
-        if (signOut.getPlace().equals(Sign.SIGIN_PLACE.getPlace())) {
+    public Result signOut(SignOut signOut, String token) {
+        //解析token
+        int userId = jwtHelper.getUserId(token).intValue();
+        signOut.setUser(userId);
+        signOut.setOutTime(new Date());
+
+        //检查经度纬度
+        if (signOut.getPlace() == null) {
+            signOut.setPlace("117.5555,128.888");
+        }
+        //将经度维度从字符串转为BigDecimal
+        String[] split = signOut.getPlace().split(",");
+        BigDecimal bLongitude = new BigDecimal(split[0]);
+        BigDecimal bLatitude = new BigDecimal(split[1]);
+        System.out.println("bLatitude = " + bLatitude);
+        System.out.println("bLongitude = " + bLongitude);
+
+        if (SignMessage.checkPlace(bLongitude, bLatitude)) {
+            signOut.setOutTime(new Date());
             LambdaQueryWrapper<RecodrFrom> wrapper = new LambdaQueryWrapper<>();
             wrapper.eq(RecodrFrom::getUser, signOut.getUser())
-                    .eq(RecodrFrom::getState, 0);
-            RecodrFrom recodrFrom = recodrFromMapper.selectOne(wrapper);
-            if (signOut.getOutTime().getTime() - recodrFrom.getInTime().getTime() <= (SignMessage.getSignTimeWatch())) {
-                return Result.build("签出失败，未到规定时间", ResultCodeEnum.SIGN_OUT_ERROR);
+                    .eq(RecodrFrom::getState, 1);
+            List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(wrapper);
+            Iterator<RecodrFrom> iterator = recodrFroms.iterator();
+            while (iterator.hasNext()) {
+                RecodrFrom recodrFrom = iterator.next();
+                if (signOut.getOutTime().getTime() - recodrFrom.getInTime().getTime() <= (SignMessage.getSignTimeWatch())) {
+                    return Result.build("签出失败，未到规定时间", ResultCodeEnum.SIGN_OUT_ERROR);
+                }
+                recodrFrom.setCarryKey(signOut.getKey());
+                recodrFrom.setState(0); //State =0 已迁出
+                int rows = recodrFromMapper.updateById(recodrFrom);
+                if (rows < 1) {
+                    return Result.build(null, ResultCodeEnum.SIGN_IN_ERROE);
+                }
             }
-            recodrFrom.setOutTime(signOut.getOutTime());
-            recodrFrom.setType(signOut.getType());
-            recodrFrom.setCarryKey(signOut.getKey());
-            recodrFrom.setState(1);
-            int rows = recodrFromMapper.updateById(recodrFrom);
-            if (rows < 1) {
-                return Result.build(null, ResultCodeEnum.SIGN_IN_ERROE);
+            //签出携带钥匙，增加一条携带钥匙表记录
+            if (signOut.getKey().equals(SignMessage.getCarryKey()[0])) { //[0] 是 [1] 否
+                CarryKey carryKey = new CarryKey();
+                carryKey.setCUser(userId);
+                carryKeyMapper.insert(carryKey);
             }
-
-
             return Result.ok("签出成功");
         }
         return Result.build("签出位置不符合", ResultCodeEnum.SIGN_OUT_ERROR);
     }
 
     /**
-     * 1根据recoderFrom表中state为0（未签出的）获取签到记录中Userid
+     * 1根据recoderFrom表中state为1（未签出的）获取签到记录中Userid
      * 2 state = 0 -> userId->userMessage
      *
      * @return
      */
     @Override
-    public Result queryRoomOnlieUsers() {
+    public Result queryRoomOnlineUsers() {
         LambdaQueryWrapper<RecodrFrom> recodrFromLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getState, 0);
+        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getState, 1);
 
         List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(recodrFromLambdaQueryWrapper);
         if (recodrFroms == null) {
@@ -94,21 +164,16 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
         }
 
 
-        List<User> onlineUsers = room.getOnlineUser();
+        List<SignUser> onlineUsers = room.getOnlineUser();
+        onlineUsers.clear();
         //封装网站在线人员，
         Iterator<RecodrFrom> recodrFromIterator = recodrFroms.iterator();
         while (recodrFromIterator.hasNext()) {
             RecodrFrom recodrFrom = recodrFromIterator.next();
             Integer userId = recodrFrom.getUser();
             User user = userMapper.selectById(userId);
-            User roomOnlineUser = new User();
-            roomOnlineUser.setName(user.getName());
-            roomOnlineUser.setImage(user.getImage());
-            roomOnlineUser.setPhone(user.getPhone());
-//            if (onlineUsers.contains(roomOnlineUser)) {
-//                continue;
-//            }
-            onlineUsers.add(roomOnlineUser);
+            SignUser signUser = SignUser.getSignUser(user, recodrFrom);
+            onlineUsers.add(signUser);
         }
         return Result.ok(onlineUsers);
     }
@@ -122,14 +187,15 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
     @Override
     public Result queryCarryKeyUser() {
         LambdaQueryWrapper<RecodrFrom> recodrFromLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getCarryKey, SignMessage.getCarryKey())
-                .eq(RecodrFrom::getTransmitKey, SignMessage.getNoTransmitKey());
+        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getCarryKey, SignMessage.getCarryKey());
         List<User> getKeyUsers = room.getGetKey();
-        List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(recodrFromLambdaQueryWrapper);
-        Iterator<RecodrFrom> iterator = recodrFroms.iterator();
+        getKeyUsers.clear();
+        //封装携带key用户List
+        List<CarryKey> carryKeys = carryKeyMapper.selectList(null);
+        Iterator<CarryKey> iterator = carryKeys.iterator();
         while (iterator.hasNext()) {
-            RecodrFrom recodrFrom = iterator.next();
-            Integer userId = recodrFrom.getUser();
+            CarryKey carryKey = iterator.next();
+            Integer userId = carryKey.getCUser();
             User user = userMapper.selectById(userId);
             User carryUser = new User();
             carryUser.setName(user.getName());
@@ -138,7 +204,40 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
             getKeyUsers.add(carryUser);
         }
 
+
         return Result.ok(getKeyUsers);
+    }
+
+    /**
+     * 根据用户姓名查询出用户id然后修改签到表中用户的携带钥匙情况
+     *
+     * @param userName
+     * @return
+     */
+    @Override
+    public Result updateByUserName(String token, String userName) {
+        //判断token是否过期
+        if (jwtHelper.isExpiration(token)) {
+            //过期，需要重新登录
+            return Result.build("请重新登录", ResultCodeEnum.NOTLOGIN);
+        }
+        //登陆用户id，
+        int loginUserId = jwtHelper.getUserId(token).intValue();
+
+        //根据userName 查询 userId
+        LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        userLambdaQueryWrapper.eq(User::getName, userName);
+        User tmpUser = userMapper.selectOne(userLambdaQueryWrapper);
+        Integer uid = tmpUser.getId(); //钥匙接收在id
+
+        //修改钥匙携带者表 carrykey
+        CarryKey carryKey = new CarryKey();
+        carryKey.setCUser(uid);
+        LambdaQueryWrapper<CarryKey> carryKeyLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        carryKeyLambdaQueryWrapper.eq(CarryKey::getCUser, loginUserId);
+        int update = carryKeyMapper.update(carryKey, carryKeyLambdaQueryWrapper);
+        System.out.println("update = " + update);
+        return Result.ok("转交完成");
     }
 }
 

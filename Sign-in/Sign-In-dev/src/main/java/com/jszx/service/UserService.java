@@ -17,8 +17,11 @@ public interface UserService extends IService<User> {
     //用户注册
     Result register(User user);
     //查询用户信息
-    Result queryUsersBySno(Integer sno);
+    Result queryUsersByToken(String token);
 
     //用户更新信息
-    Result updateUser(User user);
+    Result updateUser(String token,User user);
+
+    //查询所有用户
+    Result queryUsersAll();
 }

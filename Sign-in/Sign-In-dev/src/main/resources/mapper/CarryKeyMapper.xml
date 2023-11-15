@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jszx.mapper.CarryKeyMapper">
+
+    <resultMap id="BaseResultMap" type="com.jszx.pojo.CarryKey">
+            <id property="cId" column="c_id" jdbcType="INTEGER"/>
+            <result property="cUser" column="c_user" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        c_id,c_user
+    </sql>
+</mapper>

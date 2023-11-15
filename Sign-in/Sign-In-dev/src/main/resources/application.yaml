@@ -14,7 +14,7 @@ spring:
     druid:
       url: jdbc:mysql:///clockin_dev
       username: root
-      password: lwx
+      password: liulove02
       driver-class-name: com.mysql.cj.jdbc.Driver
 # mybatis-plus的配置
 mybatis-plus:
@@ -29,7 +29,7 @@ mybatis-plus:
 #jwt配置
 jwt:
   token:
-    tokenExpiration: 120 #有效时间,单位分钟
+    tokenExpiration: 2880 #有效时间,单位分钟 一天
     tokenSignKey: jszx123456  #当前程序签名秘钥 自定义
 #springdoc-openapi项目配置，访问地址：http://127.0.0.1:8080/doc.html
 springdoc:
