@@ -2,6 +2,9 @@ package com.jszx.service;
 
 import com.jszx.pojo.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jszx.pojo.dto.AdminUserDto;
+import com.jszx.pojo.vo.PortalVo;
+import com.jszx.pojo.vo.RecoderVo;
 import com.jszx.utils.Result;
 
 /**
@@ -11,7 +14,7 @@ import com.jszx.utils.Result;
 */
 public interface AdminService extends IService<Admin> {
     // 管理员登陆
-    Result adminLogin(Admin admin);
+    Result adminLogin(AdminUserDto admin);
 
     //查看所有用户信息
     Result queryAllUser(Integer department);
@@ -20,6 +23,6 @@ public interface AdminService extends IService<Admin> {
     Result updateAdminMsg(Admin admin);
 
     //查看用户签到记录
-    Result queryRecodrFrom();
+    Result queryRecodrFromByPage(RecoderVo recoderVo);
 
 }

@@ -1,7 +1,8 @@
 package com.jszx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jszx.mapper.DepartmentMapper;
 import com.jszx.mapper.RecodrFromMapper;
@@ -10,8 +11,12 @@ import com.jszx.pojo.Admin;
 import com.jszx.pojo.Department;
 import com.jszx.pojo.RecodrFrom;
 import com.jszx.pojo.User;
+import com.jszx.pojo.dto.AdminUserDto;
+import com.jszx.pojo.vo.PortalVo;
+import com.jszx.pojo.vo.RecoderVo;
 import com.jszx.service.AdminService;
 import com.jszx.mapper.AdminMapper;
+import com.jszx.utils.JwtHelper;
 import com.jszx.utils.MD5Util;
 import com.jszx.utils.Result;
 import com.jszx.utils.ResultCodeEnum;
@@ -33,6 +38,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
         implements AdminService {
 
     @Autowired
+    private JwtHelper jwtHelper;
+    @Autowired
     private DepartmentMapper departmentMapper;
     @Autowired
     private UserMapper userMapper;
@@ -48,7 +55,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
      * @return 数据库忠的管理员
      */
     @Override
-    public Result adminLogin(Admin admin) {
+    public Result adminLogin(AdminUserDto admin) {
         LambdaQueryWrapper<Admin> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Admin::getUsername, admin.getUsername());
         Admin currenAdmin = adminMapper.selectOne(lambdaQueryWrapper);
@@ -56,10 +63,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
             return Result.build("用户不存在", ResultCodeEnum.USERNAME_ERROR_NO_USER);
         }
 
-        if (!currenAdmin.getPassword().equals(admin.getPassword())) {
+        if (!currenAdmin.getPassword().equals(MD5Util.encrypt(admin.getPassword()))) {
             return Result.build("密码错误", ResultCodeEnum.PASSWORD_ERROR);
         }
-        return Result.ok(currenAdmin);
+        String token = jwtHelper.createToken(currenAdmin.getAid().longValue());
+        return Result.ok(token);
     }
 
 
@@ -113,9 +121,21 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
     }
 
     @Override
-    public Result queryRecodrFrom() {
-        List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(null);
-        return Result.ok(recodrFroms);
+    public Result queryRecodrFromByPage(RecoderVo recoderVo) {
+        IPage<Map> page = new Page<>(recoderVo.getPageNum(), recoderVo.getPageSize());
+        recodrFromMapper.selectAllUserPageMap(page,recoderVo);
+        //封装网站在线人员，
+
+        HashMap<String, Object> pageInfo = new HashMap<>();
+        pageInfo.put("pageData",page.getRecords());
+        pageInfo.put("pageNum",page.getCurrent());
+        pageInfo.put("pageSize",page.getSize());
+        pageInfo.put("totalPage",page.getPages());
+        pageInfo.put("totalSize",page.getTotal());
+
+        HashMap<String, Object> pageInfoMap = new HashMap<>();
+        pageInfoMap.put("pageInfo",pageInfo);
+        return Result.ok(pageInfoMap);
     }
 }
 

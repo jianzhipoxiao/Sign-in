@@ -15,7 +15,9 @@ com\jszx\config\SwaggerConfig.class
 com\jszx\utils\Room.class
 com\jszx\pojo\RecodrFrom.class
 com\jszx\mapper\CarryKeyMapper.class
+com\jszx\config\SpringMvcConfig.class
 com\jszx\pojo\vo\TestUser.class
+com\jszx\pojo\vo\PortalVo.class
 com\jszx\mapper\RecodrFromMapper.class
 com\jszx\service\DepartmentService.class
 com\jszx\utils\ShowMessage.class
@@ -42,3 +44,4 @@ com\jszx\service\impl\UserServiceImpl.class
 com\jszx\pojo\CarryKey.class
 com\jszx\pojo\vo\ShowUser.class
 com\jszx\controller\adminController.class
+com\jszx\interceptor\LoginProtectInterceptor.class

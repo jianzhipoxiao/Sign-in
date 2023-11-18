@@ -5,18 +5,48 @@
 <mapper namespace="com.jszx.mapper.RecodrFromMapper">
 
     <resultMap id="BaseResultMap" type="com.jszx.pojo.RecodrFrom">
-            <id property="rid" column="rId" jdbcType="BIGINT"/>
-            <result property="user" column="user" jdbcType="INTEGER"/>
-            <result property="inTime" column="in_time" jdbcType="TIMESTAMP"/>
-            <result property="type" column="type" jdbcType="VARCHAR"/>
-            <result property="outTime" column="out_time" jdbcType="TIMESTAMP"/>
-            <result property="carryKey" column="carry_key" jdbcType="VARCHAR"/>
-            <result property="version" column="version" jdbcType="INTEGER"/>
+        <id property="rid" column="rId" jdbcType="BIGINT"/>
+        <result property="user" column="user" jdbcType="INTEGER"/>
+        <result property="inTime" column="in_time" jdbcType="TIMESTAMP"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="outTime" column="out_time" jdbcType="TIMESTAMP"/>
+        <result property="carryKey" column="carry_key" jdbcType="VARCHAR"/>
+        <result property="version" column="version" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        rId,user,in_time,
+        rId
+        ,user,in_time,
         type,out_time,carry_key,
         version
     </sql>
+    <!--    state=1为未签到-->
+    <select id="selectOnlineUserPageMap" resultType="map">
+        select u.name, u.phone, r.type
+        from t_recodr_from as r
+                 left join t_user as u on r.user = u.id
+        where r.state = 1
+    </select>
+    <select id="selectAllUserPageMap" resultType="map">
+        select u.name, u.phone,r.type
+        from t_recodr_from as r
+        left join t_user as u on r.user = u.id
+        <where>
+<!--            <if test="user!=null">-->
+<!--                and r.user = #{recoderVo.user}-->
+<!--            </if>-->
+
+            <if test="recoderVo.department !=null">
+                and u.department = #{recoderVo.department}
+            </if>
+
+            <if test="recoderVo.selectTimeStart != null">
+                and r.in_time > #{recoderVo.selectTimeStart}
+            </if>
+
+<!--            <if test="selectTimeEnd != null">-->
+<!--                and r.out_time < #{selectTimeEnd}-->
+<!--            </if>-->
+        </where>
+    </select>
 </mapper>

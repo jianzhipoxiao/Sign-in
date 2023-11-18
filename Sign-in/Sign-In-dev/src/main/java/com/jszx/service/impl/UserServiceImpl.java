@@ -135,7 +135,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (userList==null){
             return Result.build("查询失败",ResultCodeEnum.SELECT_ERROR);
         }
-        List<String> userListNames = new ArrayList<>();
         Iterator<User> iterator = userList.iterator();
         CarryKeyUsersList kaifa = new CarryKeyUsersList(DepartmentMsg.kaifa);
         CarryKeyUsersList sheji = new CarryKeyUsersList(DepartmentMsg.sheji);

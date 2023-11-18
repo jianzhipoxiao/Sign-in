@@ -1,6 +1,9 @@
 package com.jszx.controller;
 
 import com.jszx.pojo.Admin;
+import com.jszx.pojo.dto.AdminUserDto;
+import com.jszx.pojo.vo.PortalVo;
+import com.jszx.pojo.vo.RecoderVo;
 import com.jszx.service.AdminService;
 import com.jszx.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +21,13 @@ public class adminController {
     @Autowired
     private AdminService adminService;
     @PostMapping("login")
-    public Result login(@RequestBody Admin admin){
+    public Result login(@RequestBody AdminUserDto admin){
         Result result = adminService.adminLogin(admin);
         return  result;
     }
     @GetMapping()
-    private Result queryRecodrFromByPage(@PathVariable (name = "id") Integer id){
-        Result result = adminService.queryRecodrFrom();
+    private Result queryRecodrFromByPage(RecoderVo recoderVo){
+        Result result = adminService.queryRecodrFromByPage(recoderVo);
         return result;
     }
 

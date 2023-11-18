@@ -2,6 +2,7 @@ package com.jszx.service;
 
 import com.jszx.pojo.RecodrFrom;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jszx.pojo.vo.PortalVo;
 import com.jszx.pojo.vo.SignIn;
 import com.jszx.pojo.vo.SignOut;
 import com.jszx.utils.Result;
@@ -27,4 +28,7 @@ public interface RecodrFromService extends IService<RecodrFrom> {
 
     //更新签到表中用户携带钥匙
     Result updateByUserName(String token, String userName);
+
+    //首页用户分页
+    Result findOnlineUserPage(PortalVo portalVo);
 }

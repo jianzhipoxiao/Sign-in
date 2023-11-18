@@ -1,12 +1,15 @@
 package com.jszx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jszx.mapper.CarryKeyMapper;
 import com.jszx.mapper.UserMapper;
 import com.jszx.pojo.CarryKey;
 import com.jszx.pojo.RecodrFrom;
 import com.jszx.pojo.User;
+import com.jszx.pojo.vo.PortalVo;
 import com.jszx.pojo.vo.SignUser;
 import com.jszx.utils.*;
 import com.jszx.pojo.vo.SignIn;
@@ -55,11 +58,11 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
 
         //state==1为签出，签到失败
         LambdaQueryWrapper<RecodrFrom> recodrFromLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getUser,userId)
-                .eq(RecodrFrom::getState,1); //state==1 未签出
+        recodrFromLambdaQueryWrapper.eq(RecodrFrom::getUser, userId)
+                .eq(RecodrFrom::getState, 1); //state==1 未签出
         List<RecodrFrom> recodrFroms = recodrFromMapper.selectList(recodrFromLambdaQueryWrapper);
-        if (!recodrFroms.isEmpty()){
-            return Result.build("签到失败，不能重复签到",ResultCodeEnum.SIGN_IN_ERROE);
+        if (!recodrFroms.isEmpty()) {
+            return Result.build("签到失败，不能重复签到", ResultCodeEnum.SIGN_IN_ERROE);
         }
         //检查经度纬度
         if (signIn.getPlace() == null) {
@@ -138,9 +141,18 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
             }
             //签出携带钥匙，增加一条携带钥匙表记录
             if (signOut.getKey().equals(SignMessage.getCarryKey()[0])) { //[0] 是 [1] 否
-                CarryKey carryKey = new CarryKey();
-                carryKey.setCUser(userId);
-                carryKeyMapper.insert(carryKey);
+                LambdaQueryWrapper<CarryKey> carryKeyLambdaQueryWrapper = new LambdaQueryWrapper<>();
+                carryKeyLambdaQueryWrapper.eq(CarryKey::getCUser, userId);
+                int count = carryKeyMapper.selectCount(carryKeyLambdaQueryWrapper).intValue();
+                //判断是否有钥匙，
+                if (count > 0) {
+                    //有钥匙 不在新增钥匙
+                    return Result.ok("签出成功");
+                }
+                //没钥匙添加钥匙
+                CarryKey addCarryKey = new CarryKey();
+                addCarryKey.setCUser(userId);
+                carryKeyMapper.insert(addCarryKey);
             }
             return Result.ok("签出成功");
         }
@@ -177,6 +189,7 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
         }
         return Result.ok(onlineUsers);
     }
+
 
     /**
      * carrykey == 是 && TransmitKey == 未转交 -> recoder
@@ -238,6 +251,26 @@ public class RecodrFromServiceImpl extends ServiceImpl<RecodrFromMapper, RecodrF
         int update = carryKeyMapper.update(carryKey, carryKeyLambdaQueryWrapper);
         System.out.println("update = " + update);
         return Result.ok("转交完成");
+    }
+
+    @Override
+    public Result findOnlineUserPage(PortalVo portalVo) {
+
+
+        IPage<Map> page = new Page<>(portalVo.getPageNum(), portalVo.getPageSize());
+        recodrFromMapper.selectOnlineUserPageMap(page,portalVo);
+        //封装网站在线人员，
+
+        HashMap<String, Object> pageInfo = new HashMap<>();
+        pageInfo.put("pageData",page.getRecords());
+        pageInfo.put("pageNum",page.getCurrent());
+        pageInfo.put("pageSize",page.getSize());
+        pageInfo.put("totalPage",page.getPages());
+        pageInfo.put("totalSize",page.getTotal());
+
+        HashMap<String, Object> pageInfoMap = new HashMap<>();
+        pageInfoMap.put("pageInfo",pageInfo);
+        return Result.ok(pageInfoMap);
     }
 }
 

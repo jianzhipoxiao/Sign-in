@@ -12,7 +12,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql:///clockin_dev
+      url: jdbc:mysql://localhost:3306/clockin_dev?characterEncoding=utf8
       username: root
       password: liulove02
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,12 +20,13 @@ spring:
 mybatis-plus:
   type-aliases-package: com.jszx.pojo
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
   global-config:
     db-config:
       logic-delete-field: isDeleted  #全局逻辑删除
       id-type: auto #主键策略自增长
       table-prefix: t_ # 设置表的前缀
+
 #jwt配置
 jwt:
   token:
@@ -53,6 +54,18 @@ knife4j:
     enable: true
 
 # Logger Config
+
+#日志配置 无特殊需求无需更改
 logging:
+  config:  classpath:log4j2.xml
   level:
     com.hexadecimal: debug
+    root: INFO
+    javax.activation: info
+    org.apache.catalina: INFO
+    org.apache.commons.beanutils.converters: INFO
+    org.apache.coyote.http11.Http11Processor: INFO
+    org.apache.http: INFO
+    org.apache.tomcat: INFO
+    org.springframework: INFO
+    com.chinamobile.cmss.bdpaas.resource.monitor: DEBUG
