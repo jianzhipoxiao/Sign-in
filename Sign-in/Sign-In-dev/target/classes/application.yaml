@@ -20,7 +20,8 @@ spring:
 mybatis-plus:
   type-aliases-package: com.jszx.pojo
   configuration:
-    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+#      log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: isDeleted  #全局逻辑删除

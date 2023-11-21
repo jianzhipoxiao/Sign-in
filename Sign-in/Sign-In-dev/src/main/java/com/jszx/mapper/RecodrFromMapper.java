@@ -18,7 +18,7 @@ import java.util.Map;
 public interface RecodrFromMapper extends BaseMapper<RecodrFrom> {
 
     IPage<Map> selectOnlineUserPageMap(IPage page, @Param("portalvo") PortalVo portalVo);
-    IPage<Map> selectAllUserPageMap(IPage page, @Param("recoderVo") RecoderVo recoderVo);
+    IPage<Map> selectAllUserPageMap(IPage<Map> page, @Param("recoderVo") RecoderVo recoderVo);
 }
 
 

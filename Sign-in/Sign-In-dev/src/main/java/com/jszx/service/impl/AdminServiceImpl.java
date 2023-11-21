@@ -122,20 +122,18 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
 
     @Override
     public Result queryRecodrFromByPage(RecoderVo recoderVo) {
-        IPage<Map> page = new Page<>(recoderVo.getPageNum(), recoderVo.getPageSize());
+        IPage<Map> page = new Page<>(recoderVo.getPageNum(),recoderVo.getPageSize());
         recodrFromMapper.selectAllUserPageMap(page,recoderVo);
-        //封装网站在线人员，
-
+        //封装签到人员，
         HashMap<String, Object> pageInfo = new HashMap<>();
         pageInfo.put("pageData",page.getRecords());
         pageInfo.put("pageNum",page.getCurrent());
         pageInfo.put("pageSize",page.getSize());
         pageInfo.put("totalPage",page.getPages());
         pageInfo.put("totalSize",page.getTotal());
-
         HashMap<String, Object> pageInfoMap = new HashMap<>();
         pageInfoMap.put("pageInfo",pageInfo);
-        return Result.ok(pageInfoMap);
+        return Result.ok(pageInfo);
     }
 }
 

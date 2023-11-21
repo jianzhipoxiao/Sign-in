@@ -25,13 +25,13 @@ public class adminController {
         Result result = adminService.adminLogin(admin);
         return  result;
     }
-    @GetMapping()
-    private Result queryRecodrFromByPage(RecoderVo recoderVo){
+    @PostMapping ("querySginUsers")
+    private Result queryRecodrFromByPage(@RequestBody RecoderVo recoderVo){
         Result result = adminService.queryRecodrFromByPage(recoderVo);
         return result;
     }
 
-    @PutMapping
+    @PutMapping()
     public Result updateAdmin(@RequestBody Admin admin){
         Result result = adminService.updateAdminMsg(admin);
         return result;

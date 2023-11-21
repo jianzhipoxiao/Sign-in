@@ -28,25 +28,31 @@
         where r.state = 1
     </select>
     <select id="selectAllUserPageMap" resultType="map">
-        select u.name, u.phone,r.type
+        select u.name, d.dname,r.in_time,r.type
         from t_recodr_from as r
-        left join t_user as u on r.user = u.id
+        left join t_user as u on r.user = u.id left join t_department as d on d.id = u.department
+
         <where>
-<!--            <if test="user!=null">-->
-<!--                and r.user = #{recoderVo.user}-->
-<!--            </if>-->
+            <if test="recoderVo.name!=null">
+                and u.name = #{recoderVo.name}
+            </if>
 
             <if test="recoderVo.department !=null">
                 and u.department = #{recoderVo.department}
             </if>
 
             <if test="recoderVo.selectTimeStart != null">
-                and r.in_time > #{recoderVo.selectTimeStart}
+                and r.in_time >= #{recoderVo.selectTimeStart}
             </if>
 
-<!--            <if test="selectTimeEnd != null">-->
-<!--                and r.out_time < #{selectTimeEnd}-->
-<!--            </if>-->
+            <if test="recoderVo.selectTimeEnd != null">
+                and r.in_time &lt;= #{recoderVo.selectTimeEnd}
+            </if>
+
+            <if test="recoderVo.type != null">
+                and r.type = #{recoderVo.type}
+            </if>
         </where>
+        GROUP BY u.`name`
     </select>
 </mapper>

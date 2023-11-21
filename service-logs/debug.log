@@ -1,1 +1,35 @@
-2023-11-17 22:29:46,081 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.56] RMI TCP Connection(1)-10.200.4.56: (port 54188) op = 80
+2023-11-21 13:01:05,715 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: name = "[B", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-21 13:01:05,729 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 84
+2023-11-21 13:01:05,729 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 80
+2023-11-21 13:01:05,730 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 80
+2023-11-21 13:01:05,730 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: name = "javax.management.ObjectName", codebase = ""
+2023-11-21 13:01:05,731 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.222] connectionId=rmi://10.200.4.222  2, name=org.springframework.boot:type=Admin,name=SpringApplication, attribute=Ready
+2023-11-21 13:01:05,732 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: [10.200.4.222] exception: 
+javax.management.InstanceNotFoundException: org.springframework.boot:type=Admin,name=SpringApplication
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getMBean(DefaultMBeanServerInterceptor.java:1088) ~[?:?]
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute(DefaultMBeanServerInterceptor.java:640) ~[?:?]
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute(JmxMBeanServer.java:679) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1449) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl.getAttribute(RMIConnectionImpl.java:639) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[?:?]
+	at sun.rmi.transport.Transport$1.run(Transport.java:200) ~[?:?]
+	at sun.rmi.transport.Transport$1.run(Transport.java:197) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:712) ~[?:?]
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+2023-11-21 13:01:05,739 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 80
+2023-11-21 13:01:05,740 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.222] [javax.management.remote.rmi.RMIConnectionImpl@110e06a5: connectionId=rmi://10.200.4.222  2] closing.
+2023-11-21 13:01:05,740 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.222] [javax.management.remote.rmi.RMIConnectionImpl@110e06a5: connectionId=rmi://10.200.4.222  2] closed.
