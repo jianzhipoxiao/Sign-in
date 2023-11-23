@@ -24,4 +24,6 @@ public interface UserService extends IService<User> {
 
     //查询所有用户
     Result queryUsersAll();
+
+    Result checkLogin(String token);
 }

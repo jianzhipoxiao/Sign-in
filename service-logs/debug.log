@@ -1,10 +1,18 @@
-2023-11-21 13:01:05,715 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: name = "[B", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
-2023-11-21 13:01:05,729 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 84
-2023-11-21 13:01:05,729 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 80
-2023-11-21 13:01:05,730 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 80
-2023-11-21 13:01:05,730 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: name = "javax.management.ObjectName", codebase = ""
-2023-11-21 13:01:05,731 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.222] connectionId=rmi://10.200.4.222  2, name=org.springframework.boot:type=Admin,name=SpringApplication, attribute=Ready
-2023-11-21 13:01:05,732 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: [10.200.4.222] exception: 
+2023-11-23 11:19:18,205 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "[B", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:19:18,224 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: (port 54051) op = 80
+2023-11-23 11:56:27,970 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: (port 58729) op = 80
+2023-11-23 11:56:27,974 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "[Ljava.rmi.server.ObjID;", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:56:27,975 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "java.rmi.server.ObjID", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:56:27,976 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "java.rmi.server.UID", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:56:27,976 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "java.rmi.dgc.Lease", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:56:27,976 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "java.rmi.dgc.VMID", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:56:27,976 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "[B", codebase = "", defaultLoader = jdk.internal.loader.ClassLoaders$PlatformClassLoader@8c3b9d
+2023-11-23 11:56:27,977 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: (port 58729) op = 84
+2023-11-23 11:56:27,977 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: (port 58729) op = 80
+2023-11-23 11:56:27,979 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: (port 58729) op = 80
+2023-11-23 11:56:27,979 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: name = "javax.management.ObjectName", codebase = ""
+2023-11-23 11:56:27,980 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.20] connectionId=rmi://10.200.4.20  1, name=org.springframework.boot:type=Admin,name=SpringApplication, attribute=Ready
+2023-11-23 11:56:27,981 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: [10.200.4.20] exception: 
 javax.management.InstanceNotFoundException: org.springframework.boot:type=Admin,name=SpringApplication
 	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getMBean(DefaultMBeanServerInterceptor.java:1088) ~[?:?]
 	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute(DefaultMBeanServerInterceptor.java:640) ~[?:?]
@@ -30,6 +38,5 @@ javax.management.InstanceNotFoundException: org.springframework.boot:type=Admin,
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
 	at java.lang.Thread.run(Thread.java:833) ~[?:?]
-2023-11-21 13:01:05,739 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.222] RMI TCP Connection(1)-10.200.4.222: (port 63157) op = 80
-2023-11-21 13:01:05,740 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.222] [javax.management.remote.rmi.RMIConnectionImpl@110e06a5: connectionId=rmi://10.200.4.222  2] closing.
-2023-11-21 13:01:05,740 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.222] [javax.management.remote.rmi.RMIConnectionImpl@110e06a5: connectionId=rmi://10.200.4.222  2] closed.
+2023-11-23 11:56:28,020 DEBUG sun.rmi.runtime.Log$LoggerLog [RMI TCP Connection(1)-10.200.4.20] RMI TCP Connection(1)-10.200.4.20: (port 58729) op = 80
+2023-11-23 11:56:28,020 DEBUG sun.util.logging.internal.LoggingProviderImpl$JULWrapper [RMI TCP Connection(1)-10.200.4.20] [javax.management.remote.rmi.RMIConnectionImpl@43edc0fe: connectionId=rmi://10.200.4.20  1] closing.

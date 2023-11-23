@@ -30,6 +30,11 @@ public class UserController {
         return result;
     }
 
+    @GetMapping("checkLogin")
+    public Result checkLogin(@RequestHeader String token){
+        Result result = userService.checkLogin(token);
+        return result;
+    }
     @PostMapping()
     public Result register(@RequestBody User user){
         Result result = userService.register(user);

@@ -1,7 +1,6 @@
 package com.jszx.test;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import com.jszx.utils.IpMacUtil;
 
 /**
  * @author 刘林
@@ -9,7 +8,7 @@ import java.util.Date;
  */
 public class test {
     public static void main(String[] args) {
-        Date date = new Date();
-        System.out.println(System.currentTimeMillis());
+        String mac = IpMacUtil.getMacByIP("127.0.0.1");
+        System.out.println("mac = " + mac);
     }
 }

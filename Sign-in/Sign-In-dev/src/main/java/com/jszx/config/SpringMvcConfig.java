@@ -3,6 +3,7 @@ package com.jszx.config;
 import com.jszx.interceptor.LoginProtectInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -19,15 +20,15 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 //    @Override
 //    public void addCorsMappings(CorsRegistry registry) {
 //        registry.addMapping("/**")
-//                .allowedOrigins("http://localhost:5000")
+//                .allowedOrigins("http://47.")
 //                .allowedMethods("GET","POST","PUT","OPTIONS","DELETE","PATCH")
 //                .allowCredentials(true).maxAge(3600);
 //    }
 
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(loginProtectInterceptor)
 //                .addPathPatterns("/Sign/**").excludePathPatterns("/Sign/getCarryKeyUser","/Sign/getRomeOnlineUsers");
-//    }
+    }
 }

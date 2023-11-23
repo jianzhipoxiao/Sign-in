@@ -15,6 +15,7 @@ import com.jszx.mapper.UserMapper;
 import com.jszx.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -158,6 +159,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         carryKeyUsersLists.add(sheji);
         carryKeyUsersLists.add(sheying);
         return Result.ok(carryKeyUsersLists);
+    }
+
+    @Override
+    public Result checkLogin(String token) {
+        if (jwtHelper.isExpiration(token) || StringUtils.isEmpty(token)){
+            return Result.build(null,ResultCodeEnum.NOTLOGIN);
+        }
+
+        int uid = jwtHelper.getUserId(token).intValue();
+        User user = userMapper.selectById(uid);
+        if (user==null){
+            return Result.build(null,ResultCodeEnum.USERNAME_ERROR_NO_USER);
+        }
+        return Result.ok("已登录");
     }
 }
 

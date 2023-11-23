@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class adminController {
     @Autowired
     private AdminService adminService;
+    @GetMapping("checkLogin")
+    public Result checkLogin(@RequestHeader String token){
+        Result result = adminService.checkLogin(token);
+        return result;
+    }
     @PostMapping("login")
     public Result login(@RequestBody AdminUserDto admin){
         Result result = adminService.adminLogin(admin);

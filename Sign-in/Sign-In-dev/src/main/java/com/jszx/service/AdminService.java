@@ -25,4 +25,6 @@ public interface AdminService extends IService<Admin> {
     //查看用户签到记录
     Result queryRecodrFromByPage(RecoderVo recoderVo);
 
+    //检查管理员是否已登录
+    Result checkLogin(String token);
 }

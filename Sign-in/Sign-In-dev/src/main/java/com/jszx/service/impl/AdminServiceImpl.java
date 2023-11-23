@@ -135,6 +135,24 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin>
         pageInfoMap.put("pageInfo",pageInfo);
         return Result.ok(pageInfo);
     }
+
+    @Override
+    public Result checkLogin(String token) {
+        //检查是否过期
+        if (jwtHelper.isExpiration(token)){
+            //过期
+            return Result.build(null,ResultCodeEnum.NOTLOGIN);
+        }
+
+        //检测是否是已注册的信息
+        int uid = jwtHelper.getUserId(token).intValue();
+        Admin admin = adminMapper.selectById(uid);
+        if (admin==null){
+            //没有该用户
+            return Result.build(null,ResultCodeEnum.USERNAME_ERROR_NO_USER);
+        }
+        return Result.ok("已登录");
+    }
 }
 
 

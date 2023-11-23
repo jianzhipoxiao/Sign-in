@@ -53,6 +53,6 @@
                 and r.type = #{recoderVo.type}
             </if>
         </where>
-        GROUP BY u.`name`
+
     </select>
 </mapper>

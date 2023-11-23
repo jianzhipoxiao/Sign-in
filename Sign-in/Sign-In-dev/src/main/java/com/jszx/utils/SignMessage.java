@@ -19,9 +19,9 @@ public final class SignMessage {
       "是","否"
     };
     //工作室经度
-    public static BigDecimal placeLongitude = new BigDecimal(39.181915);
+    public static BigDecimal placeLongitude = new BigDecimal(39.188915);
     //工作室维度
-    public static BigDecimal placeLatitude  = new BigDecimal(117.131325);
+    public static BigDecimal placeLatitude  = new BigDecimal(117.134325);
 
     /**
      * 判断签到位置是否是合适的
@@ -29,6 +29,7 @@ public final class SignMessage {
      * @param
      * @return
      */
+
     public static boolean checkPlace(BigDecimal Longitude ,BigDecimal bLatitude ){
 
 
@@ -36,7 +37,7 @@ public final class SignMessage {
         double absLatitude = Math.abs(bLatitude.subtract(placeLatitude).doubleValue());
         System.out.println("维度差 absLatitude = " + absLatitude);
         System.out.println("经度差 absLongitude = " + absLongitude);
-        if (absLatitude<0.01 && absLongitude<0.01){
+        if (absLatitude<0.0003 && absLongitude<0.0004){
             return true;
         }
         return false;
