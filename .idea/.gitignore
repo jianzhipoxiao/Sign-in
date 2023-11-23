@@ -6,3 +6,28 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+#忽略了构建文件夹
+/out
+
+#忽略了日志文件夹
+logs/
+
+#忽略了测试输出文件夹
+/test/
+
+#忽略了备份文件
+*.bak
+*.swp
+
+#忽略了IntelliJ IDEA的临时文件
+*.tmp
+
+#忽略了IDEA的配置文件
+*.idea
+
+#忽略了Maven的配置文件
+/pom.xml
+/build.xml
+
+#忽略了Gradle的配置文件
+/build.gradle

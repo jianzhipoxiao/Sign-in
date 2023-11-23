@@ -377,3 +377,22 @@
 2023-11-23 12:42:32,057 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
 2023-11-23 12:44:01,710 INFO com.alibaba.druid.pool.DruidDataSource [SpringApplicationShutdownHook] {dataSource-1} closing ...
 2023-11-23 12:44:01,712 INFO com.alibaba.druid.pool.DruidDataSource [SpringApplicationShutdownHook] {dataSource-1} closed
+2023-11-23 12:44:04,785 INFO org.springframework.boot.StartupInfoLogger [main] Starting Main using Java 17.0.8 with PID 15804 (E:\BaiduSyncdisk\系统\Sign-in-1.0.3\Sign-in\Sign-In-dev\target\classes started by Administrator in E:\BaiduSyncdisk\系统\Sign-in-1.0.3)
+2023-11-23 12:44:04,790 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-11-23 12:44:05,525 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-11-23 12:44:05,530 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-11-23 12:44:05,531 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-11-23 12:44:05,531 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-11-23 12:44:05,586 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-11-23 12:44:05,586 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 774 ms
+2023-11-23 12:44:05,682 INFO com.alibaba.druid.spring.boot3.autoconfigure.DruidDataSourceAutoConfigure [main] Init DruidDataSource
+2023-11-23 12:44:05,947 INFO com.alibaba.druid.pool.DruidDataSource [main] {dataSource-1} inited
+2023-11-23 12:44:06,633 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-11-23 12:44:06,647 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-23 12:44:06,653 INFO org.springframework.boot.StartupInfoLogger [main] Started Main in 2.099 seconds (process running for 2.8)
+2023-11-23 12:44:06,654 INFO com.jszx.Main [main] server started
+2023-11-23 12:44:17,429 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-23 12:44:17,430 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-11-23 12:44:17,430 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2023-11-23 14:45:09,981 INFO com.alibaba.druid.pool.DruidDataSource [SpringApplicationShutdownHook] {dataSource-1} closing ...
+2023-11-23 14:45:09,984 INFO com.alibaba.druid.pool.DruidDataSource [SpringApplicationShutdownHook] {dataSource-1} closed
